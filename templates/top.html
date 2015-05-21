@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<head>
+<script type='text/javascript' src='/static/rdkit.js'></script>
+<script>
+function molwt( smi ){
+	var mol = RDKit.Molecule.fromSmiles( smi );
+	var mw = mol.getMW();
+	alert( mw );
+}
+
+</script>
+
+</head>
+<body>
+<h>rdkitjs test</h><br><br>
+
+<form name='chemo'>
+    Input smilestrings;<br> 
+    	<input type='text' name='smi'>
+    calc molwt<br>
+    	<input name='calc' value='cal' type='button' onClick='molwt( document.chemo.smi.value )'>
+</form>
+
+
+</body>
+</html>
