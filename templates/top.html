@@ -5,7 +5,14 @@
 function molwt( smi ){
 	var mol = RDKit.Molecule.fromSmiles( smi );
 	var mw = mol.getMW();
-	alert( mw );
+	document.getElementById( 'molwt' ).innerHTML = 'molweight===>>>'+ '  '+ mw;
+}
+
+function moldraw( smi ){
+	var mol = RDKit.Molecule.fromSmiles( smi );
+	var mol2d = mol.Drawing2D();
+	var remol = mol2d.replace( /svg:/g, '' );
+	document.getElementById( 'molimage' ).innerHTML = remol;
 }
 
 </script>
@@ -16,10 +23,15 @@ function molwt( smi ){
 
 <form name='chemo'>
     Input smilestrings;<br> 
-    	<input type='text' name='smi'>
-    calc molwt<br>
-    	<input name='calc' value='cal' type='button' onClick='molwt( document.chemo.smi.value )'>
+    	<textarea name='smi'></textarea>
+    input smiles<br><br>
+    	<input name='calc' value='cal' type='button' onClick='molwt( document.chemo.smi.value )'><br><br>
+    show mol<br>
+    	<input name='getimage' value='mouseover' type='button' onMouseover='moldraw( document.chemo.smi.value )'>
 </form>
+
+<div id='molwt'></div><br>
+<div id='molimage'></div><br>
 
 
 </body>
